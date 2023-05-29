@@ -13,17 +13,6 @@ export function createUser(name, email, password, bio, profileImage){
 }
 
 
-export function getProfile(userId){
-    return db.query(`
-    SELECT users.id, users.name, users."profileImage", users.bio,
-    JSON_AGG(posts) AS "userPost"
-    FROM users 
-    JOIN posts ON users.id = posts."userId"
-    WHERE users.id=$1
-    GROUP BY users.id, users.name;
-    `, [userId]);
-}
-
 export function getAllUsers(userId){
     return db.query(`
     SELECT name, bio, "profileImage" FROM users WHERE id <> ?;

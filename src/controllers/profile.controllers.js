@@ -1,9 +1,9 @@
 import { createPost } from "../repositories/profile.repository.js";
-import { getProfile } from "../repositories/user.repository.js";
+import { getProfile } from "../repositories/profile.repository.js";
 
 export async function newPost(req, res) {
     const  { photo, description } = req.body;
-    const { userId } = res.locals.userId;
+    const { userId } = res.locals;
 
     try {
         const { rows: [result]} = await createPost(photo, description, userId);

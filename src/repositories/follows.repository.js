@@ -9,7 +9,7 @@ export function getFollowsByType(userId, type){
 
 export function newFollow(idFollow, type, userId){
     return db.query(`
-    INSERT INTO follows (idFollow, type, userId) 
+    INSERT INTO follows ("idFollow", type, "userId") 
     VALUES ($1, $2, $3);
     `, [idFollow, type, userId]);
 }

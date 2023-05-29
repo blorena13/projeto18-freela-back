@@ -12,7 +12,7 @@ const usersRouter = Router();
 usersRouter.get("/profile", validateAuth, getUserProfile); //meu perfil
 usersRouter.get("/users", getUsers); // todos os usuarios que eu vou filtrar no front
 usersRouter.get("/users/:id", usersById); // perfil do usuario que eu clicar;
-usersRouter.get("me/:type", getFollows); //pegar os follows
+usersRouter.get("/me/:type", getFollows); //pegar os follows
 usersRouter.post("/:id/following", startFollow); //perfil da pessoa que eu quero seguir
 
 
