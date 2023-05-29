@@ -4,14 +4,14 @@ import { createUser, getUserByEmail } from "../repositories/user.repository.js";
 import { createSession } from "../repositories/auth.repository.js";
 
 export async function signUp(req, res) {
-    const { name, email, password, confirmPassword, profileImage, bio } = req.body;
+    const { name, email, password, bio, profileImage } = req.body;
 
     try {
         const user = await getUserByEmail(email);
         if (user.rowCount !== 0) return res.status(409).send({ message: "E-mail já foi cadastrado" });
 
         const hash = bcrypt.hashSync(password, 10);
-        await createUser(name, email, hash, profileImage, bio);
+        await createUser(name, email, hash, bio, profileImage);
 
         res.sendStatus(201);
 
